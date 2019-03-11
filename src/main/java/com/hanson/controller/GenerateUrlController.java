@@ -37,24 +37,28 @@ public class GenerateUrlController {
 
 
     @RequestMapping("/generateConf")
-    public CreateUrlResponseVO generateShortUrl( @RequestBody @Valid CreateUrlRequestVO requestVO) {
+    public CreateUrlResponseVO generateShortUrl(@RequestBody @Valid CreateUrlRequestVO requestVO) {
         CreateUrlResponseVO createUrlResponseVO = new CreateUrlResponseVO();
-        createUrlResponseVO.setLongUrl(requestVO.getLongUrl());
+        String longUrl = requestVO.getLongUrl();
+        if (!longUrl.startsWith("http")) {
+            longUrl = "http://" + longUrl;
+        }
+        createUrlResponseVO.setLongUrl(longUrl);
         if (!StringUtils.isEmpty(requestVO.getShortUrl())) {
-            if(!UrlUtils.isShortKey(requestVO.getShortUrl())){
+            if (!UrlUtils.isShortKey(requestVO.getShortUrl())) {
                 return createUrlResponseVO;
             }
-            urlStoreService.put(requestVO.getShortUrl(), requestVO.getLongUrl());
+            urlStoreService.put(requestVO.getShortUrl(), longUrl);
             createUrlResponseVO.setShortUrl(domainName + requestVO.getShortUrl());
             return createUrlResponseVO;
         } else {
             String shortUrl;
             if (requestVO.getLength() >= 8) {
-                shortUrl = generateUrlService.generate(requestVO.getLongUrl(), requestVO.getLength());
+                shortUrl = generateUrlService.generate(longUrl, requestVO.getLength());
             } else {
-                shortUrl = generateUrlService.generate(requestVO.getLongUrl());
+                shortUrl = generateUrlService.generate(longUrl);
             }
-            urlStoreService.put(shortUrl, requestVO.getLongUrl());
+            urlStoreService.put(shortUrl, longUrl);
             createUrlResponseVO.setShortUrl(domainName + shortUrl);
         }
 
@@ -67,7 +71,9 @@ public class GenerateUrlController {
         if (!UrlUtils.isHttpAddress(longUrl)) {
             return createUrlResponseVO;
         }
-
+        if (!longUrl.startsWith("http")) {
+            longUrl = "http://" + longUrl;
+        }
         String shortUrl = generateUrlService.generate(longUrl);
         urlStoreService.put(shortUrl, longUrl);
 

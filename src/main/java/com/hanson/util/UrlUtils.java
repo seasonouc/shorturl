@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class UrlUtils {
 
-    public final static String httpRegex = "^http(s)?:\\/\\/(www\\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\\d+)*(\\/\\w+\\.\\w+)*([\\?&]\\w+=\\w*)*$";
+    public final static String httpRegex = "(http(s)?:\\/\\/)?(www\\.)?[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+(:\\d+)*(\\/\\w+\\.\\w+)*([\\?&]\\w+=\\w*)*$";
     public final static String shortKeyRegex = "^[a-z0-9A-Z]{8,100}$";
     /**
      * MD5加密(32位大写)

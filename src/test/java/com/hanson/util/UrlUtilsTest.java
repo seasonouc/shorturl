@@ -20,9 +20,12 @@ public class UrlUtilsTest {
         boolean res1 =  UrlUtils.isHttpAddress("http://www.tetet.com/index.html?q=1&m=test");
         Assert.assertTrue(res1);
         boolean res2 =  UrlUtils.isHttpAddress("www.tetet.com/index.html?q=1&m=test");
-        Assert.assertFalse(res2);
+        Assert.assertTrue(res2);
         boolean res3 =  UrlUtils.isHttpAddress("tetet.com/index.html?q=1&m=test");
-        Assert.assertFalse(res3);
+        Assert.assertTrue(res3);
+
+        boolean res4 =  UrlUtils.isHttpAddress("tetet432com/index.html?q=1&m=test");
+        Assert.assertFalse(res4);
     }
 
     @Test
