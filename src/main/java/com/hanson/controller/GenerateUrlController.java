@@ -68,9 +68,9 @@ public class GenerateUrlController {
     @RequestMapping("/generate")
     public CreateUrlResponseVO generateShortUrl(String longUrl) {
         CreateUrlResponseVO createUrlResponseVO = new CreateUrlResponseVO();
-        if (!UrlUtils.isHttpAddress(longUrl)) {
-            return createUrlResponseVO;
-        }
+//        if (!UrlUtils.isHttpAddress(longUrl)) {
+//            return createUrlResponseVO;
+//        }
         if (!longUrl.startsWith("http")) {
             longUrl = "http://" + longUrl;
         }

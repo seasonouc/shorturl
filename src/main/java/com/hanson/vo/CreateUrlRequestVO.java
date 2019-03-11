@@ -5,6 +5,7 @@ import com.hanson.util.UrlUtils;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Created by hanson on 2019/3/10.
@@ -15,7 +16,8 @@ public class CreateUrlRequestVO {
      * long url
      */
     @NotNull
-    @Pattern(regexp= UrlUtils.httpRegex)
+//    @Pattern(regexp= UrlUtils.httpRegex)
+    @Size(min = 12,max = 500)
     private String longUrl;
 
     /**
