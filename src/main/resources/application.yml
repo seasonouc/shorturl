@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: him-server
+  datasource:
+    url: jdbc:mysql://localhost:3306/shorturl
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  port: 8081
+  counterCache: local
+  urlStore: local
+  domainName: localhost:8081/
+
+redis:
+  address: localhost
+  port: 3306
+  userName: name
+  password: password

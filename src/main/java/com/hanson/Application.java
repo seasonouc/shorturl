@@ -1,0 +1,17 @@
+package com.hanson;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * Created by hanson on 2019/3/10.
+ */
+@EnableAutoConfiguration
+@SpringBootApplication
+public class Application {
+    public static void main(String args[]){
+        SpringApplication.run(Application.class,args);
+
+    }
+}
